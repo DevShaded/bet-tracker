@@ -2,12 +2,17 @@
 
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Features;
 
 beforeEach(function () {
     $this->skipUnlessFortifyHas(Features::emailVerification());
+});
+
+test('user requires email verification', function () {
+    expect(new User)->toBeInstanceOf(MustVerifyEmail::class);
 });
 
 test('email verification screen can be rendered', function () {
