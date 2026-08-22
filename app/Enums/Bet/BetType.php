@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bet;
+namespace App\Enums\Bet;
 
 enum BetType: string
 {

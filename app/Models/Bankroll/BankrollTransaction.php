@@ -2,7 +2,7 @@
 
 namespace App\Models\Bankroll;
 
-use App\Bankroll\TransactionType;
+use App\Enums\Bankroll\TransactionType;
 use App\Models\Bets\Bet;
 use Database\Factories\Bankroll\BankrollTransactionFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Bets;
 
-use App\Bet\BetStatus;
-use App\Bet\BetType;
+use App\Enums\Bet\BetStatus;
+use App\Enums\Bet\BetType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

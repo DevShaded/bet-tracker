@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Bankroll;
 
-use App\Bankroll\TransactionType;
+use App\Enums\Bankroll\TransactionType;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

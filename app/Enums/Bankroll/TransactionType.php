@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bankroll;
+namespace App\Enums\Bankroll;
 
 enum TransactionType: string
 {

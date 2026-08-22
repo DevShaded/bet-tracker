@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Bets;
 
-use App\Bet\BetStatus;
-use App\Bet\BetType;
+use App\Enums\Bet\BetStatus;
+use App\Enums\Bet\BetType;
 use App\Models\Bankroll\Bankroll;
 use App\Models\Bets\Bet;
 use App\Models\Bookmaker\Bookmaker;

@@ -2,7 +2,7 @@
 
 namespace Database\Factories\Bankroll;
 
-use App\Bankroll\TransactionType;
+use App\Enums\Bankroll\TransactionType;
 use App\Models\Bankroll\Bankroll;
 use App\Models\Bankroll\BankrollTransaction;
 use App\Models\Bets\Bet;
