@@ -5,6 +5,7 @@ namespace App\Models\Bankroll;
 use App\Models\Bets\Bet;
 use App\Models\User;
 use Database\Factories\Bankroll\BankrollFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,18 +23,11 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
+#[Fillable(['user_id', 'name', 'currency', 'starting_balance', 'is_active'])]
 class Bankroll extends Model
 {
     /** @use HasFactory<BankrollFactory> */
     use HasFactory, HasUuids;
-
-    protected $fillable = [
-        'user_id',
-        'name',
-        'currency',
-        'starting_balance',
-        'is_active',
-    ];
 
     /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
