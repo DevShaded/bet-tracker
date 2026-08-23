@@ -168,7 +168,8 @@ const canSubmit = computed(() => {
                             <Input
                                 id="starting_balance"
                                 v-model="startingBalance"
-                                type="text"
+                                type="number"
+                                step="0.01"
                                 name="starting_balance"
                                 placeholder="20"
                                 required

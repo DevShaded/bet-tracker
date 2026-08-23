@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 const props = defineProps<{
     name: string;
     currency: string;
-    startingBalance: string;
+    startingBalance: string | number;
     isActive: boolean;
 }>();
 

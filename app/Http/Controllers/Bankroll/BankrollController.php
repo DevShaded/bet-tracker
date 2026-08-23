@@ -27,6 +27,9 @@ class BankrollController extends Controller
         return Inertia::render('bankroll/Create');
     }
 
+    /**
+     * @throws \Throwable
+     */
     public function store(BankrollRequest $request): RedirectResponse
     {
         Gate::authorize('create', Bankroll::class);
@@ -43,6 +46,6 @@ class BankrollController extends Controller
     {
         Gate::authorize('view', $bankroll);
 
-        dd($bankroll);
+        return $bankroll->load('transactions');
     }
 }
