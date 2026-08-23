@@ -38,7 +38,7 @@ const canSubmit = computed(() => {
     return (
         name.value.trim() !== '' &&
         currency.value !== '' &&
-        startingBalance.value.trim() !== ''
+        startingBalance.value !== ''
     );
 });
 </script>

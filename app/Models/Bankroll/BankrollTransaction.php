@@ -4,6 +4,7 @@ namespace App\Models\Bankroll;
 
 use App\Enums\Bankroll\TransactionType;
 use App\Models\Bets\Bet;
+use App\Models\User;
 use Database\Factories\Bankroll\BankrollTransactionFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -48,5 +49,22 @@ class BankrollTransaction extends Model
             'amount' => 'decimal:2',
             'occurred_at' => 'datetime',
         ];
+    }
+
+    public static function availableBalanceFor(User $user): float
+    {
+        $debitTypes = [
+            TransactionType::WITHDRAWAL->value,
+            TransactionType::STAKE->value,
+            TransactionType::ADJUSTMENT_DEBIT->value,
+        ];
+
+        return (float) static::query()
+            ->whereIn('bankroll_id', $user->bankrolls()->select('id'))
+            ->selectRaw(
+                'COALESCE(SUM(CASE WHEN type IN (?, ?, ?) THEN -amount ELSE amount END), 0) as balance',
+                $debitTypes,
+            )
+            ->value('balance');
     }
 }

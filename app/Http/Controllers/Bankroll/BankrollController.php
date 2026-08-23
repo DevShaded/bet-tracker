@@ -2,22 +2,30 @@
 
 namespace App\Http\Controllers\Bankroll;
 
+use App\Actions\Bankroll\GetBankrollAction;
 use App\Actions\Bankroll\StoreBankrollAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Bankroll\BankrollRequest;
 use App\Models\Bankroll\Bankroll;
+use App\Queries\Bankroll\GetBankrollStatsQuery;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class BankrollController extends Controller
 {
-    public function index()
+    public function index(Request $request): Response
     {
         Gate::authorize('viewAny', Bankroll::class);
 
-        dd(Bankroll::where('user_id', auth()->id())->get());
+        return Inertia::render('bankroll/Index', [
+            'stats' => GetBankrollStatsQuery::handle($request->user()),
+            'bankrolls' => GetBankrollAction::handle($request->user())->load([
+                'transactions' => fn ($query) => $query->latest('occurred_at'),
+            ]),
+        ]);
     }
 
     public function create(): Response
